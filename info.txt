@@ -1,0 +1,16 @@
+title: Automatic Time Zones
+desc: This module tries to automatically detect the visitor's time zone (using
+JavaScript) and adjusts the times shown in your forum accordingly. This will
+work for both logged in and anonymous users.
+version: 6.0.1
+require_version: 5.2
+author: Maurice Makaay (original idea by Joe Curia)
+url: http://www.phorum.org/phorum5/read.php?62,133996
+
+category: viewlayout
+category: user_features
+
+hook: javascript_register|phorum_mod_automatic_timezones_javascript_register
+hook: common|phorum_mod_automatic_timezones_common
+hook: addon|phorum_mod_automatic_timezones_addon
+

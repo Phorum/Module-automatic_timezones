@@ -1,0 +1,83 @@
+Changelog:
+----------
+
+2011-04-02 v6.0.1 (Maurice Makaay)
+
+    - Fixed a PHP warning:
+		  Missing argument 1 for phorum_mod_automatic_timezones_addon()
+
+2011-04-01 v6.0.0 (Maurice Makaay)
+
+    - A full rewrite of the module, taking Joe's ideas to the next level,
+      making optimal use of new features in the Phorum core.
+
+    - Extracted logic into a separate api.php, for code clarity. The module
+      code has been simplified into using only three hooks.
+
+    - Moved the javascript code into the global Phorum javascript (still
+      only triggering this code when the timezone needs to be determined).
+
+    - The module now uses the addon hook to handle posting the offset
+      from the client to the module. The redirection code has been improved,
+      to not have to fiddle with the active URL to include the offset in
+      the request (which could cause issues with systems that use their own
+      URL formatting schema for things like friendly URLs or embedding Phorum).
+
+    - New offset caching mechanism, to minimize local impact:
+      - When cookie storage is available for the client, then no local caching
+        of offsets is done anymore.
+      - When cookie storage is unavailable, then registered users will have
+        their offset stored in the user's settings data. For unregistered
+        users, the offset is cached based on the IP address of the user.
+      - Keeping the IP-cache limited (to prevent db storage overflow) has
+        been optimized to not delete all entries on overflow, but only
+        to trim down the cache to 80% of the maximum allowed storage.
+
+    - Fixed some buggy behavior that showed for users that configured their
+      own timezone in the Control Center (when saving settings, the selected
+      time zone was stored, but the settings panel would show the
+      automatically determined time zone instead).
+
+    - Fixed the bug that caused the PHP Notice "Undefined index: REMOTE_ADDR
+      in .../automatic_timezones.php on line 79" when executing the
+      script.php.
+
+2009-04-02 v5.2.1.05 (Joe Curia)
+
+    - Enhancement: Module rewritten to place the necessary javascript inside the
+      header.  This allows for browsers without javascript to view the page 
+      without any negative consequences without the need for the excessive 
+      browscap support.  Thanks go to Phorum developer Maurice Makaay for 
+      pointing me in the right direction on this.
+
+2009-03-28 v5.2.1.04 (Joe Curia)
+
+    - Bugfix: Previous coding required the user's browser to support javascript.
+      To work around this, the module now checks if the user's browser is 
+      capable of supporting javacript before running.  If the user has disabled 
+      javascript, a meta refresh will kick in after 2 seconds the first time 
+      they visit the forum.  After that their IP Address will be cached.
+      Thanks go to Phorum user didi2 for reporting this bug.
+
+    - Bugfix: Eliminated some PHP notices.
+
+2009-02-04 v5.2.1.03 (Joe Curia)
+
+    - Bugfix: Users in the GMT time zone (i.e. 0 offset) would experience an 
+      infinite loop.  Thanks go to Phorum user ExIslander for reporting this 
+      bug.
+
+2008-12-15 v5.2.1.02 (Joe Curia)
+
+    - Enhancement: Added support for the Recent Messages module and other 
+      modules which might call the phorum_api_user_save() function before 
+      displaying dates.
+
+2008-10-22 v5.2.1.01 (Joe Curia)
+
+    - Bugfix: Fixed a bug that caused the cc_panel hook in other modules to 
+      fail.  Thank you Maurice Makaay for this fix.
+
+2008-10-20 v5.2.1.00 (Joe Curia)
+
+    - Started.

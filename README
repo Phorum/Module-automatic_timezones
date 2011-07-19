@@ -1,0 +1,39 @@
+Module  : Automatic Time Zones
+Version : 6.0.1
+Authors : Original idea and implementation by Joe Curia
+          Full rewrite by Maurice Makaay <maurice@phorum.org>
+
+This module tries to automatically detect the visitor's time zone (using
+JavaScript) and adjusts the times shown in your forum accordingly. This will
+work for both logged in and anonymous users.
+
+By default, all time zone offests will be automatically determined by the
+time zone offset on the visitor's computer.
+For authenticated users and anonymous users that have cookies enabled in
+their browser, the time zone will be checked once per day.
+If an anonymous visitor does not have cookies enabled, that visitor's IP
+address will be stored with the offset information. In this case the time
+zone will be checked every two hours to avoid issues with dynamic and/or
+roaming IP's.
+
+In the settings page, the admin can allow registered users to override the 
+automatic timezone with one of there own choosing. To use this option, you 
+must enable the option "Allow Time Zone Selection" in the User Settings 
+section of the General Settings page in the admin section as well.
+
+
+Install
+-------
+
+- Unpack the archive;
+
+- Move the directory "automatic_timezones" to the directory "mods"
+  within your Phorum installation;
+
+- Login as administrator in Phorum's administrative interface and
+  go to the "Modules" section;
+
+- Enable the module "Automatic Time Zones".
+
+- Configure the module through the module's settings page.
+
